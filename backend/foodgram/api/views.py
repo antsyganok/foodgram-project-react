@@ -2,25 +2,22 @@ from django.db.models import Sum
 from django.shortcuts import get_object_or_404, HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
-from rest_framework import pagination, permissions, response, status, viewsets
+from rest_framework import permissions, response, status, viewsets
 from djoser import views
 from recipes import models as recipes_models
 from users.models import User, Subscribe
 from api import filters
 from api.permissions import IsAdminOrAuthor
+from api.pagination import RecipePagination
 from api import serializers as api_serializers
 from api.utils import create_obj, delete_obj
-
-
-pagination.PageNumberPagination.page_size = 6
 
 
 class UserViewSet(views.UserViewSet):
     """ Вьюсет для работы с пользователями и подписками """
     queryset = User.objects.all()
     serializer_class = api_serializers.Us3rSerializer
-    # pagination.PageNumberPagination.page_size = 6
-    pagination_class = pagination.PageNumberPagination
+    pagination_class = RecipePagination
 
     @action(
         detail=True, methods=['post', 'delete'],
@@ -34,17 +31,17 @@ class UserViewSet(views.UserViewSet):
                 return response.Response(
                     'Такая подписка уже существует',
                     status=status.HTTP_400_BAD_REQUEST)
-            else:
-                serializer = api_serializers.SubscribeSerializer(
-                    author,
-                    data=request.data,
-                    context={"request": request},
+            serializer = api_serializers.SubscribeSerializer(
+                author,
+                data=request.data,
+                context={"request": request},
                 )
-                serializer.is_valid(raise_exception=True)
-                Subscribe.objects.create(user=user, author=author)
-                return response.Response(
-                    serializer.data,
-                    status=status.HTTP_201_CREATED)
+            serializer.is_valid(raise_exception=True)
+            Subscribe.objects.create(user=user, author=author)
+            return response.Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED
+                )
         if request.method == 'DELETE':
             subscription = get_object_or_404(
                 Subscribe,
@@ -106,15 +103,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrAuthor, )
     filter_backends = (DjangoFilterBackend,)
     filterset_class = filters.RecipeFilter
-    # pagination.PageNumberPagination.page_size = 5
-    pagination_class = pagination.PageNumberPagination
+    pagination_class = RecipePagination
     http_method_names = ['get', 'post', 'patch', 'delete']
 
     def get_serializer_class(self):
         if self.action in ('list', 'retrieve'):
             return api_serializers.ReadOnlyRecipeSerializer
-        else:
-            return api_serializers.RecipeSerializer
+        return api_serializers.RecipeSerializer
 
     @action(
         detail=True,
@@ -126,10 +121,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if request.method == 'POST':
             return create_obj(
                 request, api_serializers.FavoriteSerializer, recipe)
-        else:
-            err_msg = 'Такого рецепта нет в избранном.'
-            return delete_obj(
-                request, recipes_models.Favorite, recipe, err_msg)
+        err_msg = 'Такого рецепта нет в избранном.'
+        return delete_obj(
+            request, recipes_models.Favorite, recipe, err_msg)
 
     @action(
         detail=True,
@@ -141,10 +135,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if request.method == 'POST':
             return create_obj(
                 request, api_serializers.ShoppingCartSerializer, recipe)
-        else:
-            err_msg = 'Этого рецепта в списке покупок нет.'
-            return delete_obj(
-                request, recipes_models.ShoppingCart, recipe, err_msg)
+        err_msg = 'Этого рецепта в списке покупок нет.'
+        return delete_obj(
+            request, recipes_models.ShoppingCart, recipe, err_msg)
 
     @action(
         detail=False,

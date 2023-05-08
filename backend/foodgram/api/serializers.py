@@ -96,14 +96,14 @@ class SubscribeSerializer(serializers.ModelSerializer):
             'recipes_count'
             )
         read_only_fields = (
-                            'email',
-                            'username',
-                            'first_name',
-                            'last_name',
-                            'is_subscribed',
-                            'recipes',
-                            'recipes_count'
-                            )
+            'email',
+            'username',
+            'first_name',
+            'last_name',
+            'is_subscribed',
+            'recipes',
+            'recipes_count'
+            )
 
     def get_is_subscribed(self, obj):
         user = self.context.get('request').user
@@ -160,18 +160,8 @@ class ReadOnlyRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = (
-            'id',
-            'tags',
-            'author',
-            'ingredients',
-            'is_favorited',
-            'is_in_shopping_cart',
-            'name',
-            'image',
-            'text',
-            'cooking_time',
-            )
+        # fields = '__all__'
+        exclude = ('pub_date', )
 
     def get_is_favorited(self, obj):
         request = self.context.get('request')
