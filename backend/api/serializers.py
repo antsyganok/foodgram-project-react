@@ -1,13 +1,12 @@
 import base64
 
+from api.utils import add_ingredients
 from django.core.files.base import ContentFile
 from django.db import transaction
 from djoser.serializers import UserCreateSerializer, UserSerializer
-from rest_framework import serializers, validators
-
-from api.utils import add_ingredients
 from recipes.models import (Favorite, Ingredient, IngredientRecipe, Recipe,
                             ShoppingCart, Tag)
+from rest_framework import serializers, validators
 from users.models import Subscribe, User
 
 

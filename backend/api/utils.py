@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import response, status
-
 from recipes.models import Ingredient, IngredientRecipe
+from rest_framework import response, status
 
 
 def create_obj(request, serializer_name, instance):

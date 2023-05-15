@@ -1,16 +1,15 @@
-from django.db.models import Sum
-from django.shortcuts import HttpResponse, get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
-from djoser import views
-from rest_framework import permissions, response, status, viewsets
-from rest_framework.decorators import action
-
 from api import filters
 from api import serializers as api_serializers
 from api.pagination import RecipePagination
 from api.permissions import IsAdminOrAuthor
 from api.utils import create_obj, delete_obj
+from django.db.models import Sum
+from django.shortcuts import HttpResponse, get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
+from djoser import views
 from recipes import models as recipes_models
+from rest_framework import permissions, response, status, viewsets
+from rest_framework.decorators import action
 from users.models import Subscribe, User
 
 

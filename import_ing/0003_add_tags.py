@@ -2,7 +2,6 @@
 
 from django.db import migrations
 
-
 INITIAL_TAGS = [
     {'color': '#49B64E', 'name': 'Завтрак', 'slug': 'breakfast'},
     {'color': '#E26C2D', 'name': 'Обед', 'slug': 'dinner'},
