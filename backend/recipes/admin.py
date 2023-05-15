@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import (
-    Recipe, Tag, Ingredient,
-    Favorite, IngredientRecipe, ShoppingCart)
+
+from .models import (Favorite, Ingredient, IngredientRecipe, Recipe,
+                     ShoppingCart, Tag)
 
 admin.site.site_header = 'Администрирование Foodgram'
 admin.site.index_title = 'Панель администратора Foodgram'
