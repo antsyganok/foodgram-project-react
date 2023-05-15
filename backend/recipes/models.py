@@ -34,11 +34,11 @@ class Ingredient(models.Model):
     """ Модель для игредиентов """
     name = models.CharField(
         verbose_name='Название ингредиента',
-        max_length=50,
+        max_length=250,
     )
     measurement_unit = models.CharField(
         verbose_name='Единица измерения',
-        max_length=20,
+        max_length=250,
     )
 
     class Meta:
