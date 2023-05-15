@@ -32,7 +32,7 @@ class Us3rSerializer(UserSerializer):
             'first_name',
             'last_name',
             'is_subscribed',
-            )
+        )
 
     def get_is_subscribed(self, obj):
         user = self.context.get('request').user
@@ -52,7 +52,7 @@ class CreateUserSerializer(UserCreateSerializer):
             'first_name',
             'last_name',
             'password',
-            )
+        )
 
     def create(self, validated_data):
         user = User.objects.create(
@@ -94,7 +94,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
             'is_subscribed',
             'recipes',
             'recipes_count'
-            )
+        )
         read_only_fields = (
             'email',
             'username',
@@ -103,7 +103,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
             'is_subscribed',
             'recipes',
             'recipes_count'
-            )
+        )
 
     def get_is_subscribed(self, obj):
         user = self.context.get('request').user
@@ -144,7 +144,7 @@ class IngredientRecipeSerializer(serializers.ModelSerializer):
             'name',
             'measurement_unit',
             'amount',
-            )
+        )
 
 
 class ReadOnlyRecipeSerializer(serializers.ModelSerializer):
@@ -235,7 +235,8 @@ class RecipeSerializer(serializers.ModelSerializer):
                   'image',
                   'name',
                   'text',
-                  'cooking_time')
+                  'cooking_time'
+                  )
 
 
 class FavoriteSerializer(serializers.ModelSerializer):

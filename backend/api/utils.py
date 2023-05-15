@@ -18,22 +18,19 @@ def delete_obj(request, model_name, instance, err_msg):
                                      recipe=instance).exists():
         return response.Response(
             {'errors': err_msg},
-            status=status.HTTP_400_BAD_REQUEST
-            )
+            status=status.HTTP_400_BAD_REQUEST)
     model_name.objects.filter(
         user=request.user, recipe=instance).delete()
     return response.Response(
         {'successfully': 'удалено.'},
-        status=status.HTTP_204_NO_CONTENT
-        )
+        status=status.HTTP_204_NO_CONTENT)
 
 
 def add_ingredients(ingredients, recipe):
     ingredient_list = []
     for ingredient in ingredients:
         current_ingredient = get_object_or_404(
-            Ingredient, id=ingredient.get('id')
-            )
+            Ingredient, id=ingredient.get('id'))
         amount = ingredient.get('amount')
         ingredient_list.append(
             IngredientRecipe(

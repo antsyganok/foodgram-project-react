@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from .models import (
     Recipe, Tag, Ingredient,
-    Favorite, IngredientRecipe, ShoppingCart
-    )
+    Favorite, IngredientRecipe, ShoppingCart)
 
 admin.site.site_header = 'Администрирование Foodgram'
 admin.site.index_title = 'Панель администратора Foodgram'
@@ -67,16 +66,13 @@ class RecipeAdmin(admin.ModelAdmin):
     def get_image(self, object):
         if object.image:
             return mark_safe(
-                f'<img src={object.image.url} width="80" height="45">'
-                )
-        else:
-            return 'Нет изображения'
+                f'<img src={object.image.url} width="80" height="45">')
+        return 'Нет изображения'
 
     @admin.display(description='Ингредиенты')
     def get_ingredients(self, object):
         return [
-            name['name'] for name in object.ingredients.all().values('name')
-            ]
+            name['name'] for name in object.ingredients.all().values('name')]
 
 
 @admin.register(Ingredient)

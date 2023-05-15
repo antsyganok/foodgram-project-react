@@ -34,14 +34,13 @@ class UserViewSet(views.UserViewSet):
             serializer = api_serializers.SubscribeSerializer(
                 author,
                 data=request.data,
-                context={"request": request},
-                )
+                context={"request": request},)
             serializer.is_valid(raise_exception=True)
             Subscribe.objects.create(user=user, author=author)
             return response.Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED
-                )
+            )
         if request.method == 'DELETE':
             subscription = get_object_or_404(
                 Subscribe,
@@ -51,7 +50,7 @@ class UserViewSet(views.UserViewSet):
             subscription.delete()
             return response.Response(
                 {"errors": "отписка"}, status=status.HTTP_204_NO_CONTENT
-                )
+            )
 
     @action(
         detail=False,
