@@ -11,7 +11,7 @@ services:
       - db_volume:/var/lib/postgresql/data/
 
   web:
-    image: toxin3/foodgram_backend:v3
+    image: toxin3/foodgram_backend:latest
     restart: always
     volumes:
       - static_value:/app/static/
@@ -22,7 +22,7 @@ services:
       - ./.env
 
   frontend:
-    image: toxin3/foodgram_frontend:v1
+    image: toxin3/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
 
