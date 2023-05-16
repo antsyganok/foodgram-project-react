@@ -13,13 +13,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'oq6=l3)^c=c(e(1t0_0n&ff%4qr7fm(w2sk@8)3_yh^$3=0q7y'
 SECRET_KEY = os.getenv(
     'SECRET_KEY', default='oq6=l3)^c=c(e(1t0_0n&ff%4qr7fm(w2sk@8)3_yh^$3=0q7y'
     )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    # 'corsheaders',
     'rest_framework.authtoken',
     'djoser',
     'users.apps.UsersConfig',
@@ -46,16 +44,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# CORS_ORIGIN_ALLOW_ALL = True
-# CORS_URLS_REGEX = r'^/api/.*$'
 
 ROOT_URLCONF = 'foodgram.urls'
 
@@ -100,18 +94,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', default='5432')
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.getenv(
-#             'DB_ENGINE', default='django.db.backends.postgresql'),
-#         'NAME': os.getenv('DB_NAME', default='foodgram'),
-#         'USER': os.getenv('POSTGRES_USER', default='fgrm_user'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-#         'HOST': os.getenv('DB_HOST', default='localhost'),
-#         'PORT': os.getenv('DB_PORT', default='5432')
-#     }
-# }
 
 
 # Password validation
@@ -167,8 +149,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    # 'DEFAULT_PAGINATION_CLASS': 'api.pagination.PageLimitPagination',
-    # 'PAGE_SIZE': 6,
 }
 
 DJOSER = {
