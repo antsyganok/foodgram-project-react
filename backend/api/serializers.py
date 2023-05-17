@@ -160,7 +160,6 @@ class ReadOnlyRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        # fields = '__all__'
         exclude = ('pub_date', )
 
     def get_is_favorited(self, obj):
