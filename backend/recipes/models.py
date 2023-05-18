@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from foodgram import settings
 from users.models import User
 
 
@@ -66,12 +67,12 @@ class Recipe(models.Model):
     image = models.ImageField(
         verbose_name='Изображение',
         upload_to='recipes/image/',
-        blank=True,  # TODO сделать default вместо blank
+        blank=True,
         null=True,
     )
     text = models.TextField(
         verbose_name='Рецепт',
-        max_length=10000,  # А можт нинада?
+        max_length=10000,
     )
     ingredients = models.ManyToManyField(
         verbose_name='Ингридиенты',
@@ -86,11 +87,10 @@ class Recipe(models.Model):
     cooking_time = models.PositiveSmallIntegerField(
         verbose_name='Время приготовления в минутах',
         default=1,
-        # help_text= ?
         validators=[MinValueValidator(limit_value=1,
-                    message='Минимальное время приготовления - одна минута.'),
+                    message=settings.MIN_COOK_TIME),
                     MaxValueValidator(limit_value=4500,
-                    message='Время приготовления блюда - не более 75 часов.'),
+                    message=settings.MAX_COOK_TIME),
                     ]
     )
     pub_date = models.DateTimeField(
@@ -124,7 +124,7 @@ class IngredientRecipe(models.Model):
     )
     amount = models.PositiveIntegerField(
         validators=[MinValueValidator(limit_value=1,
-                    message='Минимальное количество ингридиентов')],
+                    message=settings.MIN_AMOUNT_ING)],
         verbose_name='Количество ингредиентов'
     )
 
@@ -162,7 +162,7 @@ class Favorite(models.Model):
     )
 
     class Meta:
-        # ordering = ('id', )
+        ordering = ('id', )
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранные'
         constraints = [

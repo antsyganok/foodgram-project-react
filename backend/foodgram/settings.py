@@ -172,3 +172,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+MIN_AMOUNT_ING = 'Минимальное количество ингридиентов'
+MIN_COOK_TIME = 'Минимальное время приготовления - одна минута.'
+MAX_COOK_TIME = 'Время приготовления блюда - не более 75 часов.'

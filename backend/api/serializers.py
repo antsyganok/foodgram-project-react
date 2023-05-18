@@ -109,7 +109,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
         user = self.context.get('request').user
         if user.is_anonymous:
             return False
-        return Subscribe.objects.filter(user=obj).exists()
+        return obj.subscribing.filter(user=user).exists()
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -160,7 +160,6 @@ class ReadOnlyRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        # fields = '__all__'
         exclude = ('pub_date', )
 
     def get_is_favorited(self, obj):

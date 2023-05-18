@@ -9,11 +9,13 @@ with open('./data/ingredients.json', 'r', encoding="utf-8") as file:
 
 
 def add_ingredients(apps, schema_editor):
-
     Ingredient = apps.get_model('recipes', 'Ingredient')
+    ingredient_list = []
     for ingredient in INITIAL_INGREDIENTS:
         new_ingredient = Ingredient(**ingredient)
-        new_ingredient.save()
+        ingredient_list.append(new_ingredient)
+
+    Ingredient.objects.bulk_create(ingredient_list)
 
 
 def remove_ingredients(apps, schema_editor):
