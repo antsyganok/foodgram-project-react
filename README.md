@@ -24,12 +24,12 @@ git clone git@github.com:antsyganok/foodgram-project-react.git
 #### Перейдите в директорию \infra и создайте файл ".env" (без ковычек):
 ##### Шаблон наполнения файла:
 ```sh
-DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
-DB_NAME=postgres # имя базы данных
-POSTGRES_USER=postgres # логин для подключения к базе данных
-POSTGRES_PASSWORD=postgres # пароль для подключения к БД
-DB_HOST=db # название сервиса (контейнера)
-DB_PORT=5432 # порт для подключения к БД
+DB_ENGINE=django.db.backends.postgresql # Указываем, что работаем с postgresql
+DB_NAME=postgres # Имя базы данных
+POSTGRES_USER=postgres # Логин для подключения к базе данных
+POSTGRES_PASSWORD=postgres # Пароль для подключения к БД
+DB_HOST=db # Название сервиса (контейнера)
+DB_PORT=5432 # Порт для подключения к БД
 ```
 
 ### Для запуска приложения в Docker контейнерах перейдите в директорию "\infra" и выполните команды:
