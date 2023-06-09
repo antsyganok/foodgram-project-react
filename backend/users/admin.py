@@ -1,10 +1,10 @@
 from django.contrib import admin
-
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Subscribe, User
 
 
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(BaseUserAdmin):
     list_display = (
         'id',
         'username',
@@ -12,9 +12,19 @@ class UserAdmin(admin.ModelAdmin):
         'first_name',
         'last_name',
     )
-    search_fields = ('username', 'email')
-    list_filter = ('first_name', 'email')
+    fields = (
+        'email',
+        'password',
+        'username',
+        'first_name',
+        'last_name',
+        ('last_login', 'date_joined',)
+    )
+    fieldsets = []
+    search_fields = ('username', 'email',)
+    list_filter = ('username', 'email',)
     ordering = ('username', )
+    readonly_fields = ('last_login', 'date_joined',)
     empty_value_display = '-пусто-'
 
 

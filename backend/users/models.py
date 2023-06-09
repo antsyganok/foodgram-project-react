@@ -10,22 +10,24 @@ class User(AbstractUser):
         max_length=254,
         verbose_name='E-mail',
         unique=True,
-        help_text='укажите e-mail',
+        help_text='Укажите e-mail',
     )
     username = models.CharField(
         max_length=150,
-        verbose_name='login',
-        help_text='укажите логин',
+        verbose_name='Логин',
+        help_text='Укажите логин',
         unique=True,
         validators=[validate_user, ]
     )
     first_name = models.CharField(
         max_length=150,
         verbose_name='Имя',
-        help_text='Введите ваше имя')
+        help_text='Введите ваше имя',
+    )
     last_name = models.CharField(
         max_length=150,
-        verbose_name='Введите вашу фамилию',
+        verbose_name='Фамилия',
+        help_text='Введите вашу фамилию',
     )
     password = models.CharField(
         'Пароль',

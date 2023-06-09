@@ -1,4 +1,4 @@
-# Foodgram ("Продуктовый помошник")
+## Foodgram ("Продуктовый помошник")
 ---
 
 [![Django-app workflow](https://github.com/antsyganok/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)](https://github.com/antsyganok/foodgram-project-react/actions/workflows/foodgram_workflow.yml)
@@ -86,9 +86,9 @@ python3 manage.py runserver
 ```
 
 #### Стек:
-![python version](https://img.shields.io/badge/Python-3.7.16-purple) ![django version](https://img.shields.io/badge/Django-3.2-purple) ![django version](https://img.shields.io/badge/Django%20REST%20Framework-%203.12.4-purple)
-![docker version](https://img.shields.io/badge/Docker-%204.17.0-blue) ![nginx version](https://img.shields.io/badge/Nginx-%201.21.3-ligtgreen) ![gunicorn version](https://img.shields.io/badge/Gunicorn-%2020.0.4-orange) ![postgres version](https://img.shields.io/badge/PostgreSQL-%202.37.1-darkblue)
-![git version](https://img.shields.io/badge/Git-%202.37.1-black) ![gunicorn version](https://img.shields.io/badge/Yandex_Cloud-%2020.0.4-skyblue)
+![python version](https://img.shields.io/badge/Python-3.7.9-purple?style=flat-square&logo=python) ![django version](https://img.shields.io/badge/Django-3.2-purple?style=flat-square&logo=django) ![django version](https://img.shields.io/badge/Django%20REST%20Framework-%203.12.4-purple?style=flat-square&logo=django)
+![docker version](https://img.shields.io/badge/Docker-%204.17.0-blue?style=flat-square&logo=docker) ![nginx version](https://img.shields.io/badge/Nginx-%201.21.3-ligtgreen?style=flat-square&logo=nginx) ![gunicorn version](https://img.shields.io/badge/Gunicorn-%2020.0.4-orange?style=flat-square&logo=gunicorn) ![postgres version](https://img.shields.io/badge/PostgreSQL-%202.37.1-darkblue?style=flat-square&logo=postgresql)
+![git version](https://img.shields.io/badge/Git-%202.37.1-black?style=flat-square&logo=git) ![yandexcloud version](https://img.shields.io/badge/Yandex_Cloud-%2020.0.4-skyblue?style=flat-square)
 
 ##### Разработчик (backend):
 * Антон Цыганок
